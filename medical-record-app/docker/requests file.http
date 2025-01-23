@@ -1,0 +1,379 @@
+# =========================
+#  DOCTOR ENDPOINTS (CRUD)
+# =========================
+
+# CREATE Doctor #1
+POST http://localhost:8082/api/doctors HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Dr. John Smith",
+  "specialties": ["Cardiology", "Internal Medicine"]
+}
+
+###
+# CREATE Doctor #2
+POST http://localhost:8082/api/doctors HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Dr. Emily Johnson",
+  "specialties": ["Pediatrics"]
+}
+
+###
+# CREATE Doctor #3
+POST http://localhost:8082/api/doctors HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Dr. Alice Brown",
+  "specialties": ["Dermatology", "Allergy"]
+}
+
+###
+# GET all doctors
+GET http://localhost:8082/api/doctors HTTP/1.1
+
+###
+# (example) GET doctor by ID (replace {doctorId} with an actual ID from the CREATE response)
+GET http://localhost:8082/api/doctors/678b773c320c411619a0a928 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3Mzc1NzEwMzksImlhdCI6MTczNzU3MDQzOSwianRpIjoiNTc5ZGExYjAtNjcxYi00ZTExLWIxMmYtOTk1ZWMyNmQ2ZDI1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxYTExNmRlLTExM2YtNDllOS1hNWU1LWEyYTkzMGE0OWRkYyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6IjMwYTNiZjhjLWI0ZDEtNDU5OS05YmI3LTEwODE5ZDE2YmY5ZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbInBhdGllbnQiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoicGF0aWVudF9taXRrbyJ9.Q-apcrq1ZxmqgzapEkt0QV7gSvfmx0rJL2MtS9mECn0ehYsKWolGkwDq3JJMdp5G_VgWVbF0mHzC7TVqbKm9f6cnU1pmU3BXLADRTNaggksAUsn263raez0zDRvWdd29GJOGlpXFn4MCC5c5f9frHG0gNpFrvNzXvHBs9BTuvcOToKkje_CWZazzG0ppXWbU9LHFC6CLjl16HEF9svM0rvHBuwKmhna-lMpqHMdhNmUopvLB_fg8VfoniiaYatP20K-ybnAAKgEcGPCSqKIMByIxqqZeI8__kUBG5GAZjCcl_ex0O5sz6W0wwL7b0qhx-4ys4--jak3DzLbIQbCipw
+
+###
+# (example) UPDATE a doctor (replace {doctorId} with actual ID)
+PUT http://localhost:8082/api/doctors/678255470bef840fe4b3d7c3 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Dr. John S. Smith",
+  "specialties": ["Cardiology"]
+}
+
+###
+# (example) DELETE a doctor (replace {doctorId})
+DELETE http://localhost:8082/api/doctors/678255470bef840fe4b3d7c3 HTTP/1.1
+
+
+###
+
+
+# =========================
+#  PATIENT ENDPOINTS (CRUD)
+# =========================
+
+# CREATE Patient #1
+# NOTE: personalDoctorId must be a valid doctorId from the doctors you created.
+POST http://localhost:8082/api/patients HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Alice Johnson",
+  "egn": "1234567890",
+  "personalDoctorId": "678255440bef840fe4b3d7c2" 
+}
+
+###
+# CREATE Patient #2
+POST http://localhost:8082/api/patients HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Bob Williams",
+  "egn": "0987654321",
+  "personalDoctorId": "678255440bef840fe4b3d7c2"
+}
+
+###
+# CREATE Patient #3
+POST http://localhost:8082/api/patients HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Maria Green",
+  "egn": "1357902468",
+  "personalDoctorId": "6782554a0bef840fe4b3d7c4"
+}
+
+###
+# GET all patients
+GET http://localhost:8082/api/patients HTTP/1.1
+
+###
+# GET patient by ID (replace {patientId})
+GET http://localhost:8082/api/patients/678d3dce1d2f8050738622e7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3Mzc1NzAzMTQsImlhdCI6MTczNzU2OTcxNCwianRpIjoiODU4Y2E1Y2UtZWVmMi00ZjE2LThmM2YtOWY2MjE1NjkzMjBlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxYTExNmRlLTExM2YtNDllOS1hNWU1LWEyYTkzMGE0OWRkYyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6IjE4NWI3MzQ4LTIwOGUtNDExMC1hZGMxLTA4ZmM5ZDZmMTllNiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbInBhdGllbnQiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoicGF0aWVudF9taXRrbyJ9.JhmP1kBJ3TDqsYH3bLfYAIRvBywFx1REUgTXvaTGGn5AIF04OviqICjL6nhxOAFb7n9nRy5yQ5jwc6Ms7izLUIsXY0VgjnQvE5ttt0tJIoCONslEKlfXNlC25X68Hl0ht_TlAiitw2enaDAv-xrrC87MFMfBtnzMGZYY3fwDuQ0C0Bezv_1IT2Y6ss1tMHX7r7nMoyPS8kHC34MbcuNfEdtsfC2kvcPEwAL3sZgCl2Jfib3dJnAV_d9AGYEVCMQKhgag7nFTFCzJq-eBzXlhQGJnAp-jOgSzsYYWtCq7VCCbfxD1q5xREN-D1MnCOlOPDXiv0BKaltbPjI1pLpTkvg
+
+
+
+###
+# GET patient by KEYCLOAK ID (replace {patientId})
+GET http://localhost:8082/api/patients/keycloak/c1a116de-113f-49e9-a5e5-a2a930a49ddc HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3Mzc1NzAzMTQsImlhdCI6MTczNzU2OTcxNCwianRpIjoiODU4Y2E1Y2UtZWVmMi00ZjE2LThmM2YtOWY2MjE1NjkzMjBlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMxYTExNmRlLTExM2YtNDllOS1hNWU1LWEyYTkzMGE0OWRkYyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6IjE4NWI3MzQ4LTIwOGUtNDExMC1hZGMxLTA4ZmM5ZDZmMTllNiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbInBhdGllbnQiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoicGF0aWVudF9taXRrbyJ9.JhmP1kBJ3TDqsYH3bLfYAIRvBywFx1REUgTXvaTGGn5AIF04OviqICjL6nhxOAFb7n9nRy5yQ5jwc6Ms7izLUIsXY0VgjnQvE5ttt0tJIoCONslEKlfXNlC25X68Hl0ht_TlAiitw2enaDAv-xrrC87MFMfBtnzMGZYY3fwDuQ0C0Bezv_1IT2Y6ss1tMHX7r7nMoyPS8kHC34MbcuNfEdtsfC2kvcPEwAL3sZgCl2Jfib3dJnAV_d9AGYEVCMQKhgag7nFTFCzJq-eBzXlhQGJnAp-jOgSzsYYWtCq7VCCbfxD1q5xREN-D1MnCOlOPDXiv0BKaltbPjI1pLpTkvg
+
+###
+# UPDATE patient (replace {patientId})
+PUT http://localhost:8082/api/patients/6782566c0bef840fe4b3d7c5 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Bob W. Williams",
+  "egn": "0987654321",
+  "personalDoctorId": "6782554a0bef840fe4b3d7c4",
+  "lastInsurancePaidDate": "2007-12-03"
+}
+
+###
+# DELETE patient (replace {patientId})
+DELETE http://localhost:8082/api/patients/678256930bef840fe4b3d7c7 HTTP/1.1
+
+###
+# CHECK insurance status
+GET http://localhost:8082/api/patients/6782566c0bef840fe4b3d7c5/isInsured HTTP/1.1
+
+
+
+
+###
+# =========================
+#  DIAGNOSIS ENDPOINTS (CRUD)
+# =========================
+
+# CREATE Diagnosis #1
+POST http://localhost:8082/api/diagnoses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Flu",
+  "description": "Influenza virus infection"
+}
+
+###
+# CREATE Diagnosis #2
+POST http://localhost:8082/api/diagnoses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Bronchitis"
+}
+
+###
+# CREATE Diagnosis #3
+POST http://localhost:8082/api/diagnoses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Skin Allergy",
+  "description": "Allergic reaction on skin"
+}
+
+###
+# GET all diagnoses
+GET http://localhost:8082/api/diagnoses HTTP/1.1
+
+###
+# GET diagnosis by ID (replace {diagnosisId})
+GET http://localhost:8082/api/diagnoses/678268400bef840fe4b3d7c8 HTTP/1.1
+
+###
+# UPDATE a diagnosis (replace {diagnosisId})
+PUT http://localhost:8082/api/diagnoses/678268400bef840fe4b3d7c8 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Seasonal Flu",
+  "description": "Influenza typically in winter"
+}
+
+###
+# DELETE a diagnosis (replace {diagnosisId})
+DELETE http://localhost:8082/api/diagnoses/678268400bef840fe4b3d7c8 HTTP/1.1
+
+
+
+
+###
+# =========================
+#  VISIT ENDPOINTS (CRUD)
+# =========================
+
+# CREATE Visit #1
+# references a real patientId, doctorId, and possibly a diagnosis or two
+POST http://localhost:8082/api/visits HTTP/1.1
+content-type: application/json
+
+{
+  "patientId": "6782566c0bef840fe4b3d7c5",
+  "doctorId": "678255440bef840fe4b3d7c2",
+  "visitDate": "2025-04-10",
+  "diagnosisIds": ["678268450bef840fe4b3d7c9", "6782684a0bef840fe4b3d7ca"],
+  "prescribedMedications": ["Tamiflu", "Cough Syrup"]
+}
+
+###
+# CREATE Visit #2
+POST http://localhost:8082/api/visits HTTP/1.1
+content-type: application/json
+
+{
+  "patientId": "6782568f0bef840fe4b3d7c6",
+  "doctorId": "6782554a0bef840fe4b3d7c4",
+  "visitDate": "2025-04-11",
+  "diagnosisIds": ["678268e90bef840fe4b3d7cd"]
+}
+
+###
+# GET all visits
+GET http://localhost:8082/api/visits HTTP/1.1
+
+###
+# GET visit by ID
+GET http://localhost:8082/api/visits/678268c50bef840fe4b3d7cb HTTP/1.1
+
+###
+# UPDATE visit (replace {visitId})
+PUT http://localhost:8082/api/visits/678268c50bef840fe4b3d7cb HTTP/1.1
+content-type: application/json
+
+{
+  "patientId": "678269830bef840fe4b3d7cf",
+  "doctorId": "6782554a0bef840fe4b3d7c4",
+  "visitDate": "2025-04-11",
+  "diagnosisIds": ["6782684a0bef840fe4b3d7ca"],
+  "prescribedMedications": ["Cough Syrup", "Antihistamine"]
+}
+
+###
+# DELETE visit (replace {visitId})
+DELETE http://localhost:8082/api/visits/678269e57100f8743033b184 HTTP/1.1
+
+###
+# GET all visits for a patient
+GET http://localhost:8082/api/visits/patient/678269830bef840fe4b3d7cf HTTP/1.1
+
+###
+# GET all visits for a doctor
+GET http://localhost:8082/api/visits/doctor/6782554a0bef840fe4b3d7c4 HTTP/1.1
+
+
+
+
+###
+# =========================
+#  REPORT ENDPOINTS (EXAMPLES)
+# =========================
+
+# (3a) GET patients by diagnosis
+GET http://localhost:8082/api/reports/patients-by-diagnosis/6782684a0bef840fe4b3d7ca HTTP/1.1
+
+###
+# (3b) GET top diagnoses (optional ?top=3 parameter)
+GET http://localhost:8082/api/reports/top-diagnoses?top=5 HTTP/1.1
+
+###
+# (3c) GET patients by personal doctor
+GET http://localhost:8082/api/reports/patients-by-doctor/678255440bef840fe4b3d7c2 HTTP/1.1
+
+###
+# (3d) GET number of patients per personal doctor
+GET http://localhost:8082/api/reports/patient-count-by-doctor HTTP/1.1
+
+###
+# (3e) GET number of visits per doctor
+GET http://localhost:8082/api/reports/visit-count-by-doctor HTTP/1.1
+
+###
+# (3f) GET visits grouped by patient
+GET http://localhost:8082/api/reports/visits-by-patient/all HTTP/1.1
+
+###
+# (3g) GET visits in date range (all doctors)
+# pass start / end as query params, e.g. 2025-04-01 -> 2025-04-30
+GET http://localhost:8082/api/reports/visits-date-range?start=2025-04-01&end=2025-04-30 HTTP/1.1
+
+###
+# (3h) GET visits for a certain doctor in a date range
+GET http://localhost:8082/api/reports/visits-by-doctor-date-range?doctorId=6782554a0bef840fe4b3d7c4&start=2025-04-01&end=2025-04-30 HTTP/1.1
+
+###
+# (3i) GET month with the most sick leaves
+GET http://localhost:8082/api/reports/month-with-most-sick-leaves HTTP/1.1
+
+###
+# (3j) GET top doctors by sick leaves (optional ?top=3)
+GET http://localhost:8082/api/reports/top-doctors-sick-leaves?top=5 HTTP/1.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### registration testing
+
+POST http://localhost:8082/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "dr_jane",
+  "password": "secret123",
+  "role": "doctor",
+  "name": "Dr. Jane",
+  "specialties": ["Oncology", "Pathology"]
+}
+
+
+### registration testing admin
+
+POST http://localhost:8082/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin_jane",
+  "password": "secret123",
+  "role": "admin",
+  "name": "Admin. Jane"
+}
+
+### patient_mitko login
+ 
+POST http://localhost:8080/realms/medical-realm/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=medical-backend&client_secret=RgpeaNzwoV1RPFJRShRsOFQWDR08XJ1s&username=patient_mitko&password=secret123
+
+### ADMIN jane login
+ 
+POST http://localhost:8080/realms/medical-realm/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=medical-backend&client_secret=RgpeaNzwoV1RPFJRShRsOFQWDR08XJ1s&username=admin_jane&password=secret123
+
+### 1) GET /test (no auth needed)
+GET http://localhost:8082/test HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3MzcxOTQzMzAsImlhdCI6MTczNzE5MzczMCwianRpIjoiMmJhMjRjNjctYzE2Yy00OTJmLWI0NzQtNjRiOGUyZTc1MGZmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImYwNmMwM2U4LWQ1YmYtNDk4My04N2NlLTk4NjdhMGZjYTA1OSIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6ImQxZDg5ODE1LTZiZTAtNGY3MS1hNTNiLTAyZWVkMWFiMWUyNyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgyIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbImRvY3RvciJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJkcl9qYW5lIn0.EEbO0PcXxO7GBMITN9DCXb3l_ROeUbWyl8jGPF2XMX6cDzlTk4dPCnDTKKye2UQGYRDdJz_A6GfuShakgh7_3mCNVgDiOSdcvAdcJmGN1shqNIECGpYMUxXuPrmitzt7pzYNbG-12vphDGmIL7-k8hEEY5895PugP0eG_3l8GzB0Xk8vjYmD9JiShyn-zoByBaYUXoHzzog8gnuxW7I4H2vSB-T_qHo21nRy2M6PSSqShlTBIKbP-tZWbp5LIjjCayumwcan5NKBySa6uB3fWkIbe9IDKssbxFa61_ZHZ6kurXHrt_ui1W1Yf3hWpvCYNzduykE98BSkRyY2bZ3jqA
+###
+# 2) GET /test/doctor - requires ROLE_doctor
+#    Replace YOUR_DOCTOR_TOKEN with the token from Keycloak
+GET http://localhost:8082/test/doctor HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3MzcxOTQ0NjUsImlhdCI6MTczNzE5Mzg2NSwianRpIjoiNTU3Mjk0OGYtM2ExNy00ZmZjLWFlNTEtOTU4N2I2NzlkNjBjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjM3MWI5M2UyLWEwYmUtNDIwOS05NjMxLTY0YWFkNzViMjkwOCIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6Ijk0YmMwNzI5LTRlNWUtNDcyYS04YjVhLWY2YjFmNzE2NTc4OSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgyIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbImFkbWluIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluX2phbmUifQ.lRhuHii1Xk9-1OGEBSAAH229OoHsOsRPzJb9Z9rfES8yzNaKcng3_aAfTkFNA-e01q7IPwrrzTy0hXZH9XU0BvIwcohcAN-koa8ElQnONtnvQ7n0ikc-lsN8v5XFgRwgbhJidILFY6R6HeKbnc2dbBoj7Csh8ry4Gf_OB076VOsxFZO2LbQEU8TwpZqvhOIitvNM1r3rEmT1rajh3m5GsfnH5csQYSDbp42I1p_HCNp5oYWFyNhAWIxj983DV_unuLkn5Dz0CPyNFGY5jU932SnpNbwV1JDq6gcvUA71eduEN61Bi5EL5f8hmrywLjtqOOvBaZVAixbvAgBi7NKoTQ
+###
+# 3) GET /test/admin - requires ROLE_admin
+GET http://localhost:8082/test/admin HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3MzcxOTQ0NjUsImlhdCI6MTczNzE5Mzg2NSwianRpIjoiNTU3Mjk0OGYtM2ExNy00ZmZjLWFlNTEtOTU4N2I2NzlkNjBjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjM3MWI5M2UyLWEwYmUtNDIwOS05NjMxLTY0YWFkNzViMjkwOCIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6Ijk0YmMwNzI5LTRlNWUtNDcyYS04YjVhLWY2YjFmNzE2NTc4OSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgyIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbImFkbWluIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluX2phbmUifQ.lRhuHii1Xk9-1OGEBSAAH229OoHsOsRPzJb9Z9rfES8yzNaKcng3_aAfTkFNA-e01q7IPwrrzTy0hXZH9XU0BvIwcohcAN-koa8ElQnONtnvQ7n0ikc-lsN8v5XFgRwgbhJidILFY6R6HeKbnc2dbBoj7Csh8ry4Gf_OB076VOsxFZO2LbQEU8TwpZqvhOIitvNM1r3rEmT1rajh3m5GsfnH5csQYSDbp42I1p_HCNp5oYWFyNhAWIxj983DV_unuLkn5Dz0CPyNFGY5jU932SnpNbwV1JDq6gcvUA71eduEN61Bi5EL5f8hmrywLjtqOOvBaZVAixbvAgBi7NKoTQ
+
+
+###
+# 4) GET /test/patient - requires ROLE_patient
+GET http://localhost:8082/test/patient HTTP/1.1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxcGlGVENsMEt1djJSemNfUmtYTVBhbUlhQm84QU00aUlqWkZfcFRCSlk4In0.eyJleHAiOjE3MzcxOTQzMzAsImlhdCI6MTczNzE5MzczMCwianRpIjoiMmJhMjRjNjctYzE2Yy00OTJmLWI0NzQtNjRiOGUyZTc1MGZmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZWRpY2FsLXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImYwNmMwM2U4LWQ1YmYtNDk4My04N2NlLTk4NjdhMGZjYTA1OSIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1lZGljYWwtYmFja2VuZCIsInNpZCI6ImQxZDg5ODE1LTZiZTAtNGY3MS1hNTNiLTAyZWVkMWFiMWUyNyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgyIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlYWxtIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibWVkaWNhbC1iYWNrZW5kIjp7InJvbGVzIjpbImRvY3RvciJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJkcl9qYW5lIn0.EEbO0PcXxO7GBMITN9DCXb3l_ROeUbWyl8jGPF2XMX6cDzlTk4dPCnDTKKye2UQGYRDdJz_A6GfuShakgh7_3mCNVgDiOSdcvAdcJmGN1shqNIECGpYMUxXuPrmitzt7pzYNbG-12vphDGmIL7-k8hEEY5895PugP0eG_3l8GzB0Xk8vjYmD9JiShyn-zoByBaYUXoHzzog8gnuxW7I4H2vSB-T_qHo21nRy2M6PSSqShlTBIKbP-tZWbp5LIjjCayumwcan5NKBySa6uB3fWkIbe9IDKssbxFa61_ZHZ6kurXHrt_ui1W1Yf3hWpvCYNzduykE98BSkRyY2bZ3jqA
